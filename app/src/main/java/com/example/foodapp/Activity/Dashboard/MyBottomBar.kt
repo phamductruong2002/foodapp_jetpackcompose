@@ -29,33 +29,11 @@ fun MyBottombar() {
     val bottomMenuItemList = prepareBottomMenu()
     val context = LocalContext.current
     val selectedItem by remember { mutableStateOf("Home") }
-//    BottomAppBar(backgroundColor = colorResource(R.color.white), elevation = 3.dp) {
-//        bottomMenuItemList.forEach { bottomMenuItem ->
-//            BottomNavigationItem(
-//                selected = (selectedItem == bottomMenuItem.label),
-//                onClick = {},
-//                icon = {
-//                    Icon(
-//                        painter = bottomMenuItem.icon,
-//                        contentDescription = null,
-//                        modifier = Modifier
-//                            .padding(top = 8.dp)
-//                            .size(20.dp)
-//                    )
-//                })
-//        }
-//    }
-
-    NavigationBar(
-        containerColor = colorResource(R.color.white),
-        tonalElevation = 3.dp,
-
-        ) {
+    BottomAppBar(backgroundColor = colorResource(R.color.white), elevation = 3.dp) {
         bottomMenuItemList.forEach { bottomMenuItem ->
-            val isSelected = selectedItem == bottomMenuItem.label
-            NavigationBarItem(
-                selected = isSelected,
-                onClick = {  },
+            BottomNavigationItem(
+                selected = (selectedItem == bottomMenuItem.label),
+                onClick = {},
                 icon = {
                     Icon(
                         painter = bottomMenuItem.icon,
@@ -64,12 +42,34 @@ fun MyBottombar() {
                             .padding(top = 8.dp)
                             .size(20.dp)
                     )
-                },
-                colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent, selectedIconColor = colorResource(R.color.black), unselectedIconColor = colorResource(R.color.grey))
-            )
-
+                })
         }
     }
+
+//    NavigationBar(
+//        containerColor = colorResource(R.color.white),
+//        tonalElevation = 3.dp,
+//
+//        ) {
+//        bottomMenuItemList.forEach { bottomMenuItem ->
+//            val isSelected = selectedItem == bottomMenuItem.label
+//            NavigationBarItem(
+//                selected = isSelected,
+//                onClick = {  },
+//                icon = {
+//                    Icon(
+//                        painter = bottomMenuItem.icon,
+//                        contentDescription = null,
+//                        modifier = Modifier
+//                            .padding(top = 8.dp)
+//                            .size(20.dp)
+//                    )
+//                },
+//                colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent, selectedIconColor = colorResource(R.color.black), unselectedIconColor = colorResource(R.color.grey))
+//            )
+//
+//        }
+//    }
 }
 
 data class BottomMenuItem(

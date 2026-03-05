@@ -1,6 +1,7 @@
 package com.example.foodapp.Activity.Dashboard
 
 import android.R.attr.text
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +25,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
+import com.example.foodapp.Activity.ItemList.ItemsListActivity
 import com.example.foodapp.Domain.CategoryModel
 import com.example.foodapp.R
 
@@ -34,7 +37,7 @@ fun CategorySection(categories: SnapshotStateList<CategoryModel>, showCategoryLo
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(500.dp),
+                .height(350.dp),
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
@@ -56,7 +59,14 @@ fun CategorySection(categories: SnapshotStateList<CategoryModel>, showCategoryLo
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(horizontal = 12.dp),
-                            onItemClick = {})
+                            onItemClick = {
+                                val intent = Intent(context, ItemsListActivity::class.java).apply {
+                                    putExtra("id", categoryModel.Id.toString())
+                                    putExtra("title", categoryModel.Name)
+
+                                }
+                                startActivity(context, intent, null)
+                            })
 
                     }
                     if(row.size<3){
