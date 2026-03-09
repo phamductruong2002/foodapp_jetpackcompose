@@ -105,6 +105,21 @@ fun DetailScreen(item: FoodModel, onBackClick: () -> Unit, onAddToCartClick: () 
             )
 
             RowDetail(item = item)
+
+            DescriptionSection(item.Description)
+
+            RecommendedList()
+
+
         }
+        FooterSection(
+            onAddToCartClick,
+            totalPrice = (item.Price * numberInCart),
+            Modifier.constrainAs(footer) {
+                bottom.linkTo(parent.bottom)
+                end.linkTo(parent.end)
+                start.linkTo(parent.start)
+            }
+        )
     }
 }
